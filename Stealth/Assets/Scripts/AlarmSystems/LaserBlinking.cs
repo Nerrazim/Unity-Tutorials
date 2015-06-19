@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LasetBlinking : MonoBehaviour {
+public class LaserBlinking : MonoBehaviour {
 
 	public float onTime;
 	public float offTime;
 
-	private Renderer renderer;
+	private Renderer rendererObject;
 	private Light laserLight;
 	private float timer;
 
 	void Awake()
 	{
-		renderer = GetComponent<Renderer> ();
+		rendererObject = GetComponent<Renderer> ();
+		laserLight = GetComponent<Light> ();
 	}
 
 	// Use this for initialization
@@ -24,12 +25,12 @@ public class LasetBlinking : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 
-		if (renderer.enabled = !renderer.enabled)
+		if (rendererObject.enabled = !rendererObject.enabled)
 		{
 			SwitchBeam();
 		}
 
-		if (!renderer.enabled && timer >= offTime) 
+		if (!rendererObject.enabled && timer >= offTime) 
 		{
 			SwitchBeam();
 		}
@@ -39,7 +40,7 @@ public class LasetBlinking : MonoBehaviour {
 	{
 		timer = 0f;
 
-		renderer.enabled = !renderer.enabled;
+		rendererObject.enabled = !rendererObject.enabled;
 		laserLight.enabled = !laserLight.enabled;
 	}
 }

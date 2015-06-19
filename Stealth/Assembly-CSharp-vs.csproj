@@ -72,9 +72,9 @@
      <Compile Include="Assets\Done\DoneScripts\UnappliedScripts\guiTextSet.cs" />
      <Compile Include="Assets\Scripts\AlarmSystems\AlarmLight.cs" />
      <Compile Include="Assets\Scripts\AlarmSystems\CCTVPlayerDetection.cs" />
+     <Compile Include="Assets\Scripts\AlarmSystems\LaserBlinking.cs" />
      <Compile Include="Assets\Scripts\AlarmSystems\LaserPlayerDetection.cs" />
      <Compile Include="Assets\Scripts\AlarmSystems\LaserSwitchDeactivation.cs" />
-     <Compile Include="Assets\Scripts\AlarmSystems\LasetBlinking.cs" />
      <Compile Include="Assets\Scripts\GameController\LastPlayerSighting.cs" />
      <Compile Include="Assets\Scripts\ScreenFader\ScreenFadeInOut.cs" />
      <Compile Include="Assets\Scripts\Unapplied\Tags.cs" />
