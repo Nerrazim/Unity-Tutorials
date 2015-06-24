@@ -46,8 +46,10 @@ public class PlayerHealth : MonoBehaviour
 	void PlayerDying()
 	{
 		playerDead = true;
-		anim.SetBool (hash.deadBool, true);
+		anim.SetBool (hash.deadBool, playerDead);
 		AudioSource.PlayClipAtPoint (deathClip, transform.position);
+
+		lastPlayerSighting.position = lastPlayerSighting.resetPosition;
 	}
 
 	void PlayerDead()
@@ -57,8 +59,6 @@ public class PlayerHealth : MonoBehaviour
 
 		anim.SetFloat(hash.speedFloat, 0f);
 		playerMovement.enabled = false;
-
-		lastPlayerSighting.position = lastPlayerSighting.resetPosition;
 
 		audioPlayer.Stop();
 	}
