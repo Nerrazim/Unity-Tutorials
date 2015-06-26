@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -45,7 +45,7 @@ public class Player : MovingObject {
 		int horizontal = 0;
 		int vertical = 0;
 
-	#if UNIT_STANDALONE || UNITY_WEBPLAYER || UNITY_EDITOR
+	#if UNIT_STANDALONE || UNITY_WEBPLAYER
 
 		horizontal = (int) (Input.GetAxisRaw ("Horizontal"));
 		vertical = (int) (Input.GetAxisRaw ("Vertical"));
@@ -54,32 +54,33 @@ public class Player : MovingObject {
 		{
 			vertical = 0;
 		}
-	#else
-		if(Input.touchCount > 0)
+	#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+		if (Input.touchCount > 0)
 		{
 			Touch myTouch = Input.touches[0];
-			if(myTouch.phase == TouchPhase.Began)
+			
+			if (myTouch.phase == TouchPhase.Began)
 			{
-				touchOrigin = myTouch;
+				touchOrigin = myTouch.position;
 			}
-
-			else if(myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0) 
+			
+			else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
 			{
-				Vector2 touchEnd = myTouch.rawPosition;
+				Vector2 touchEnd = myTouch.position;
+				
 				float x = touchEnd.x - touchOrigin.x;
-				float y = touchEnd.y = touchOrigin.y;
-
+				
+				float y = touchEnd.y - touchOrigin.y;
+				
 				touchOrigin.x = -1;
-
-				if(Mathf.Abs(x) > Mathf.Abs(y))
-				{
+				
+				if (Mathf.Abs(x) > Mathf.Abs(y))
 					horizontal = x > 0 ? 1 : -1;
-				} else {
+				else
 					vertical = y > 0 ? 1 : -1;
-				}
 			}
 		}
-	 #endif
+		#endif
 
 		if(horizontal != 0 || vertical != 0)
 		{
